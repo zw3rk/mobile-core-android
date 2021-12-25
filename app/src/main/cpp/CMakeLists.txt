@@ -36,6 +36,10 @@ add_library( gmp STATIC IMPORTED )
 set_target_properties( gmp PROPERTIES IMPORTED_LOCATION
         ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libgmp.a)
 
+add_library( iconv STATIC IMPORTED )
+set_target_properties( iconv PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libiconv.a)
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
@@ -65,6 +69,7 @@ target_link_libraries( # Specifies the target library.
                        mobile-core
                        ffi
                        gmp
+                       iconv
 
                        # Links the target library to the log library
                        # included in the NDK.
