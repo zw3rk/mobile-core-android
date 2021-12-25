@@ -24,6 +24,18 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              mobile_core_android.cpp )
 
+add_library( mobile-core STATIC IMPORTED )
+set_target_properties( mobile-core PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libHSmobile-core-0.1.0.0-HfUuggbqw4DC9ci8Blc8Tf-ghc8.10.7.a)
+
+add_library( ffi STATIC IMPORTED )
+set_target_properties( ffi PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libffi.a)
+
+add_library( gmp STATIC IMPORTED )
+set_target_properties( gmp PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/libgmp.a)
+
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
@@ -43,6 +55,12 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
                        mobile_core_android
+
+                       # Our Haskell library, as well as ffi and gmp,
+                       # on which our haskell ibrary depends.
+                       mobile-core
+                       ffi
+                       gmp
 
                        # Links the target library to the log library
                        # included in the NDK.
