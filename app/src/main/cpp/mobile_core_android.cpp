@@ -18,10 +18,10 @@
 //      }
 //    }
 
-extern "C" void hs_init(int argc, char *argv[]);
+extern "C" void hs_init(int * argc, char **argv[]);
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_zw3rk_mobile_1core_1android_MainActivityKt_initHS(JNIEnv *env, jclass clazz) {
-    hs_init(0, NULL);
+    hs_init(NULL, NULL);
 }

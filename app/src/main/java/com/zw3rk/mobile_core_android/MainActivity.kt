@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     }
     companion object {
         init {
-            System.loadLibrary("mobile_core_test")
+            System.loadLibrary("mobile_core_android")
             initHS()
         }
     }
